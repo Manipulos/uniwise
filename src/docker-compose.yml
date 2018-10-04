@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    db:
+        image: mariadb:latest
+        volumes:
+            - "../data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: test
+            MYSQL_DATABASE: wiseflow
+            MYSQL_USER: wiseflow
+            MYSQL_PASSWORD: test
+        ports:
+            - 3306:3306
+    php:
+        image: test-php
+        environment:
+            SERVER_ENVIRONMENT: "local"
+            DATABASE_URL: "mysql://wiseflow:test@db/wiseflow"
+        volumes:
+          - ./app:/app/
+    nginx:
+        image: test-nginx
+        ports:
+            - 80:80
