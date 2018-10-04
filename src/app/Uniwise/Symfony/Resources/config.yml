@@ -94,3 +94,7 @@ services:
   Uniwise\Doctrine\Entity\:
     resource: '/app/Uniwise/Doctrine/Entity/*'
     public: true
+
+  Uniwise\Mappers\:
+    resource: '/app/Uniwise/Mappers/*'
+    public: true
