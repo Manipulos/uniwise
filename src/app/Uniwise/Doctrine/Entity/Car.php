@@ -42,9 +42,13 @@ class Car {
     /**
      * @ORM\ManyToMany(targetEntity="Equipment")
      * @ORM\JoinTable(name="carEquipment",
-     *      joinColumns={@ORM\JoinColumn(name="carId", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="equipmentId", referencedColumnName="id")}
-     *      )
+     *      joinColumns={
+     *          @ORM\JoinColumn(name="carId", referencedColumnName="id")
+     *      },
+     *      inverseJoinColumns={
+     *          @ORM\JoinColumn(name="equipmentId", referencedColumnName="id")
+     *      }
+     * )
      * @var Equipment[]
      */
     private $equipments;

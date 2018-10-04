@@ -84,12 +84,7 @@ class CarController extends FOSRestController {
      * @return \Uniwise\ViewModels\CarViewModel
      */
     public function addEquipmentToCar($carId, $equipmentId) {
-        $car = $this->carService->getCar($carId);
-        $equipment = $this->equipmentService->getEquipment($equipmentId);
-
-        $car->addEquipment($equipment);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->flush();
+        $car = $this->carService->addEquipment($carId, $equipmentId);
 
         return $carViewModels[] = $this->carMapper->Map($car);
     }

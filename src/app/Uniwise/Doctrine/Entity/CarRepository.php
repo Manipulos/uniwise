@@ -3,6 +3,7 @@ namespace Uniwise\Doctrine\Entity;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
 
 class CarRepository extends ServiceEntityRepository {
 
@@ -30,8 +31,15 @@ class CarRepository extends ServiceEntityRepository {
      * @return array|Car[]
      */
     public function getAllByMake($make) {
-
         return $this->findBy(array('make' => $make));
+    }
+
+    public function save() {
+        try {
+            $this->getEntityManager()->flush();
+        } catch (OptimisticLockException $e) {
+            // Write log
+        }
     }
 }
 
